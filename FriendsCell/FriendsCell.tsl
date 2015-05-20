@@ -1,0 +1,20 @@
+cell struct Character
+{
+	String Name;
+	byte Gender;
+	bool Married;
+	long Spouse;
+	long Performer;
+}
+
+cell struct Performer
+{
+	String Name;
+	byte Age;
+	List<long> Characters;
+}
+
+cell struct Friendship
+{
+	List<long> friends;
+}
