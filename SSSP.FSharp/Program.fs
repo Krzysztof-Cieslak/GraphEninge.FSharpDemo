@@ -12,12 +12,12 @@ open Trinity.Network.Messaging
 [<AutoOpen>]
 module ParameterHelpers = 
 
-    let (|Start|Generate|Compute|Output|Unknow|) (args : string array) = 
+    let (|Start|Generate|Compute|Output|Unknown|) (args : string array) = 
         if args.Length >= 1 && args.[0].StartsWith("-s") then Start
         elif args.Length >= 2 && args.[0].StartsWith("-g") then Generate
         elif args.Length >= 2 && args.[0].StartsWith("-c") then Compute
         elif args.Length >= 2 && args.[0].StartsWith("-q") then  Output
-        else Unknow
+        else Unknown
 
 module SSSPServer = 
     let private sendDistanceUpdatingMessage (cell : SSSPCell_Accessor) = 
@@ -82,7 +82,7 @@ let main args =
                       )
                       Global.CloudStorage.SaveSSSPCell(i, Int32.MaxValue, -1L, neighbors.ToList()) |> ignore
                   )
-    | Unknow -> printfn "Bad parameters"
+    | Unknown -> printfn "Bad parameters"
         
         
         
