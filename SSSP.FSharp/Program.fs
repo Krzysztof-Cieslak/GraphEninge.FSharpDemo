@@ -23,7 +23,7 @@ module SSSPServer =
     let private sendDistanceUpdatingMessage (cell : SSSPCell_Accessor) = 
         let sorter = new MessageSorter(List<int64>(cell.neighbors)) 
         [0 .. Global.ServerCount - 1] |> List.iter(fun i ->
-            let msg = new DistanceUpdatingMessageWriter(cell.CellID.Value, cell.distance, sorter.GetCellRecipientList i)
+            use msg = new DistanceUpdatingMessageWriter(cell.CellID.Value, cell.distance, sorter.GetCellRecipientList i)
             Global.CloudStorage.DistanceUpdatingToSSSPServer(i , msg)
         )
         
